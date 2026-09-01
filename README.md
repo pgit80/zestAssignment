@@ -30,7 +30,7 @@ Client/Postman/Swagger-UI -> Security Filters -> Controller Layer -> Service Lay
 
 ---
 
-## API Endpoint Details
+## API Endpoint Details (Application port is mapped to `8888` on SpringBoot and Docker as well)
 
 ### 1. Authentication Endpoints (`/api/v1/auth`)
 
