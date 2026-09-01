@@ -87,7 +87,7 @@ The system follows a multi-tier, modular architecture designed around separation
 1. Clone the repository:
    ```bash
    git clone [https://github.com/pgit80/zestAssignment.git](https://github.com/pgit80/zestAssignment.git)
-   cd zestAssignment ```
+   cd zestAssignment 
 2. Pull from the docker Image:
    ``` bash
-   docker pull pgit80/zest-app:v1 ```
+   docker pull pgit80/zest-app:v1 
