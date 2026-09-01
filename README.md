@@ -6,23 +6,7 @@ A RESTful web application engineered with Spring Boot, Spring Security (JWT-base
 
 ## Architecture Overview
 
-The system follows a multi-tier, modular architecture designed around separation of concerns:
-[ Client / Postman / Swagger UI ]
-│
-▼
-[ JwtFilter / SecurityContext ] ──(Validates Bearer Token)
-│
-▼
-[ Controller Layer ] ────────(Handles HTTP Requests & DTO Mapping)
-│
-▼
-[ Service Layer ] ─────────(Business Logic, BCrypt, Token Generation)
-│
-▼
-[ DAO / JPA ] ───────────(Data Access & Query Execution)
-│
-▼
-[ MySQL / H2 Database ] ──────(Relational Storage)
+Client/Postman/Swagger-UI -> Security Filters -> Controller Layer -> Service Layer -> DAO/JPA Layer -> MySQL(CRUD)/H2(Testing)
 
 ### Architectural Highlights
 * **Stateless JWT Security:** Authentication is completely stateless. Every incoming request is intercepted by `JwtFilter` to populate the `SecurityContext`.
