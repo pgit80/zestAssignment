@@ -66,12 +66,14 @@ Client/Postman/Swagger-UI -> Security Filters -> Controller Layer -> Service Lay
 * Docker Desktop installed and running.
 * Git installed.
 
-### Option A: Run using Pre-built Image from Docker Hub
+### Running the Application
 
-1. Clone the repository:
+##### 1. Using github:
    ```bash
    git clone [https://github.com/pgit80/zestAssignment.git](https://github.com/pgit80/zestAssignment.git)
-   cd zestAssignment 
-2. Pull from the docker Image:
+   cd zestAssignment
+   mvn spring-boot:run
+##### 2. Pull from the docker Image:
    ``` bash
-   docker pull pgit80/zest-app:v1 
+   docker pull pgit80/zest-app:v1
+   docker run pgit80/zest-app:v1
