@@ -19,14 +19,23 @@ import com.zest.zestApp.dto.ItemDto;
 import com.zest.zestApp.dto.ProductDto;
 import com.zest.zestApp.service.ProductService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("/api/v1")
 @CrossOrigin(origins = "*")
+@Tag(name = "Product Management", description = "Endpoints for Product CRUD")
 public class ProductController {
 
 	@Autowired
 	private ProductService service;
 
+	@Operation(summary = "Get all products", description = "Retrieves a list of all products along with nested items.")
+	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Successfully retrieved list"),
+			@ApiResponse(responseCode = "401", description = "Unauthorized - Valid JWT token required") })
 	@GetMapping("/products")
 	public ResponseEntity<List<ProductDto>> getAllProducts() {
 		return new ResponseEntity<List<ProductDto>>(service.getAllProducts(), HttpStatus.OK);
@@ -37,12 +46,18 @@ public class ProductController {
 		return new ResponseEntity<ProductDto>(service.getProductById(id), HttpStatus.OK);
 	}
 
+	@Operation(summary = "Create a product", description = "Saves a new product to the system.")
+	@ApiResponses(value = { @ApiResponse(responseCode = "201", description = "Product created successfully"),
+			@ApiResponse(responseCode = "400", description = "Invalid payload") })
 	@PostMapping("/addProduct")
 	public ResponseEntity<ProductDto> saveProduct(@RequestBody ProductDto dto) {
 		ProductDto addedDto = service.addProduct(dto);
 		return new ResponseEntity<ProductDto>(addedDto, HttpStatus.CREATED);
 	}
 
+	@Operation(summary = "Update product by Id", description = "Update an existing product.")
+	@ApiResponses(value = { @ApiResponse(responseCode = "201", description = "Product updated successfully"),
+			@ApiResponse(responseCode = "400", description = "Invalid payload") })
 	@PutMapping("/product/{id}")
 	public ResponseEntity<String> updateProductById(@RequestBody ProductDto dto, @PathVariable Integer id) {
 		service.updateProduct(id, dto);
