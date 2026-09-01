@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import com.zest.zestApp.service.ProductService;
 
 @RestController
 @RequestMapping("/api/v1")
+@CrossOrigin(origins = "*")
 public class ProductController {
 
 	@Autowired
@@ -32,13 +34,13 @@ public class ProductController {
 
 	@GetMapping("/products/{id}")
 	public ResponseEntity<ProductDto> getProductById(@PathVariable Integer id) {
-		return new ResponseEntity<ProductDto>(service.getProdcutById(id), HttpStatus.OK);
+		return new ResponseEntity<ProductDto>(service.getProductById(id), HttpStatus.OK);
 	}
 
 	@PostMapping("/addProduct")
-	public ResponseEntity<String> saveProduct(@RequestBody ProductDto dto) {
+	public ResponseEntity<ProductDto> saveProduct(@RequestBody ProductDto dto) {
 		ProductDto addedDto = service.addProduct(dto);
-		return new ResponseEntity<String>("Added the Product with Id " + addedDto.getId(), HttpStatus.CREATED);
+		return new ResponseEntity<ProductDto>(addedDto, HttpStatus.CREATED);
 	}
 
 	@PutMapping("/product/{id}")

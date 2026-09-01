@@ -47,7 +47,7 @@ public class ProductService {
 		return resDtos;
 	}
 
-	public ProductDto getProdcutById(Integer id) {
+	public ProductDto getProductById(Integer id) {
 		return convertProductEntityToBean(productDao.getById(id));
 	}
 

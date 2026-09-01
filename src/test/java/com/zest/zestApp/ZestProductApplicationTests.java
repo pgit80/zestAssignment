@@ -1,4 +1,4 @@
-package com.zest.zestProduct;
+package com.zest.zestApp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
