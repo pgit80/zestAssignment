@@ -49,7 +49,7 @@ public class ProductController {
 	@Operation(summary = "Create a product", description = "Saves a new product to the system.")
 	@ApiResponses(value = { @ApiResponse(responseCode = "201", description = "Product created successfully"),
 			@ApiResponse(responseCode = "400", description = "Invalid payload") })
-	@PostMapping("/addProduct")
+	@PostMapping("/addProducts")
 	public ResponseEntity<ProductDto> saveProduct(@RequestBody ProductDto dto) {
 		ProductDto addedDto = service.addProduct(dto);
 		return new ResponseEntity<ProductDto>(addedDto, HttpStatus.CREATED);
@@ -58,13 +58,13 @@ public class ProductController {
 	@Operation(summary = "Update product by Id", description = "Update an existing product.")
 	@ApiResponses(value = { @ApiResponse(responseCode = "201", description = "Product updated successfully"),
 			@ApiResponse(responseCode = "400", description = "Invalid payload") })
-	@PutMapping("/product/{id}")
+	@PutMapping("/products/{id}")
 	public ResponseEntity<String> updateProductById(@RequestBody ProductDto dto, @PathVariable Integer id) {
 		service.updateProduct(id, dto);
 		return new ResponseEntity<String>("Updated Product with id " + id, HttpStatus.OK);
 	}
 
-	@DeleteMapping("/product/{id}")
+	@DeleteMapping("/products/{id}")
 	public ResponseEntity<String> deleteProductById(@PathVariable Integer id) {
 		service.deleteProduct(id);
 		return new ResponseEntity<String>("Deleted Product with id " + id, HttpStatus.OK);
